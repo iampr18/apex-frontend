@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import AppTopBar from '../components/common/AppTopBar.jsx'
-import { useAuth } from '../hooks/useAuth.js'
+import { useAuth } from '../hooks/useAuth.jsx'
 
 export default function CurrencyPage() {
   const { logout } = useAuth()

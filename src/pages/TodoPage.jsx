@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Box, Typography, TextField, Button, Stack, IconButton, List, ListItem, ListItemText } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import dayjs from 'dayjs'
 import AppTopBar from '../components/common/AppTopBar.jsx'
-import { useAuth } from '../hooks/useAuth.js'
+import { useAuth } from '../hooks/useAuth.jsx'
 import todoService from '../api/services/todoService.js'
 
 export default function TodoPage() {
@@ -24,7 +24,13 @@ export default function TodoPage() {
     }
   }
 
-  useEffect(() => { if (user) load() }, [user])
+  const hasLoadedRef = useRef(false)
+  useEffect(() => {
+    if (!user) return
+    if (hasLoadedRef.current) return
+    hasLoadedRef.current = true
+    load()
+  }, [user])
 
   async function add() {
     setError('')

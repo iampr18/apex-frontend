@@ -1,6 +1,9 @@
 import { Navigate } from 'react-router-dom'
-import { getAccessToken } from '../../utils/storage.js'
+import { useAuth } from '../../hooks/useAuth.jsx'
+import Loader from './Loader.jsx'
 
 export default function ProtectedRoute({ children }) {
-  return getAccessToken() ? children : <Navigate to="/login" replace />
+  const { loading, user } = useAuth()
+  if (loading) return <Loader />
+  return user ? children : <Navigate to="/login" replace />
 }

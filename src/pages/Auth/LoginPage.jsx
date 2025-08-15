@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box, TextField, Button, Typography, Stack } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth.js'
+import { useAuth } from '../../hooks/useAuth.jsx'
 // import Loader from '../../../components/common/Loader.jsx'
 import Loader from '../../components/common/Loader.jsx'
 

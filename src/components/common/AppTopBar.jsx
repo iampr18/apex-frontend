@@ -4,7 +4,13 @@ import { Link, useLocation } from 'react-router-dom'
 export default function AppTopBar({ onLogout }) {
   const { pathname } = useLocation()
   const NavBtn = ({ to, label }) => (
-    <Button component={Link} to={to} variant={pathname===to?'contained':'text'} sx={{ mx: 1 }}>
+    <Button
+      component={Link}
+      to={to}
+      variant={pathname===to ? 'contained' : 'outlined'}
+      color={pathname===to ? 'secondary' : 'inherit'}
+      sx={{ mx: 1, borderColor: 'rgba(255,255,255,0.7)', color: pathname===to ? 'white' : 'rgba(255,255,255,0.9)' }}
+    >
       {label}
     </Button>
   )

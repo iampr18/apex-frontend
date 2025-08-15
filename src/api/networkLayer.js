@@ -2,7 +2,8 @@ import { withAuthHeaders, handleRefreshIfNeeded } from './interceptors.js'
 
 async function request(method, url, body, onSuccess, onError) {
   try {
-    await handleRefreshIfNeeded()
+    const isPublicAuth = /\/auth\/(login|signup|refresh)/.test(url)
+    if (!isPublicAuth) await handleRefreshIfNeeded()
     const headers = await withAuthHeaders({ 'Content-Type': 'application/json' })
     const res = await fetch(url, {
       method,
